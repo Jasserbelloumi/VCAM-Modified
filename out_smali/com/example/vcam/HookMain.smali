@@ -40,10 +40,7 @@
 .field public static camera_callback_calss:Ljava/lang/Class; = null
 
 .field public static camera_onPreviewFrame:Landroid/hardware/Camera; = null
-    sget-boolean v0, Lcom/vcam/FloatingControl;->isMirrored:Z
-    if-eqz v0, :cond_skip_mirror
     # كود عكس المصفوفة يوضع هنا
-    :cond_skip_mirror
 
 .field public static volatile data_buffer:[B = null
 
@@ -1003,10 +1000,7 @@
     aput-object v3, v2, v0
 
     const-string v0, "onPreviewFrame"
-    sget-boolean v0, Lcom/vcam/FloatingControl;->isMirrored:Z
-    if-eqz v0, :cond_skip_mirror
     # كود عكس المصفوفة يوضع هنا
-    :cond_skip_mirror
 
     invoke-static {p1, v0, v2}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
 
