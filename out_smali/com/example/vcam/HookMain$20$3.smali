@@ -1,0 +1,100 @@
+.class Lcom/example/vcam/HookMain$20$3;
+.super Lde/robv/android/xposed/XC_MethodHook;
+.source "HookMain.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lcom/example/vcam/HookMain$20;->beforeHookedMethod(Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;)V
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x0
+    name = null
+.end annotation
+
+
+# instance fields
+.field final synthetic this$1:Lcom/example/vcam/HookMain$20;
+
+
+# direct methods
+.method constructor <init>(Lcom/example/vcam/HookMain$20;)V
+    .registers 2
+
+    .line 923
+    iput-object p1, p0, Lcom/example/vcam/HookMain$20$3;->this$1:Lcom/example/vcam/HookMain$20;
+
+    invoke-direct {p0}, Lde/robv/android/xposed/XC_MethodHook;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method protected beforeHookedMethod(Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;)V
+    .registers 7
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/Throwable;
+        }
+    .end annotation
+
+    .line 926
+    invoke-super {p0, p1}, Lde/robv/android/xposed/XC_MethodHook;->beforeHookedMethod(Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;)V
+
+    .line 927
+    iget-object v0, p1, Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;->args:[Ljava/lang/Object;
+
+    const/4 v1, 0x0
+
+    aget-object v0, v0, v1
+
+    if-eqz v0, :cond_31
+
+    .line 928
+    iget-object v0, p1, Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;->args:[Ljava/lang/Object;
+
+    const/4 v2, 0x1
+
+    new-array v3, v2, [Landroid/view/Surface;
+
+    sget-object v4, Lcom/example/vcam/HookMain;->c2_virtual_surface:Landroid/view/Surface;
+
+    aput-object v4, v3, v1
+
+    invoke-static {v3}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
+
+    move-result-object v3
+
+    aput-object v3, v0, v1
+
+    const-string v0, "\u3010VCAM\u3011\u6267\u884c\u4e86 createConstrainedHighSpeedCaptureSession -5484987"
+
+    .line 929
+    invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/String;)V
+
+    .line 930
+    iget-object v0, p1, Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;->args:[Ljava/lang/Object;
+
+    aget-object v0, v0, v2
+
+    if-eqz v0, :cond_31
+
+    .line 931
+    iget-object v0, p0, Lcom/example/vcam/HookMain$20$3;->this$1:Lcom/example/vcam/HookMain$20;
+
+    iget-object v0, v0, Lcom/example/vcam/HookMain$20;->this$0:Lcom/example/vcam/HookMain;
+
+    iget-object p1, p1, Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;->args:[Ljava/lang/Object;
+
+    aget-object p1, p1, v2
+
+    check-cast p1, Landroid/hardware/camera2/CameraCaptureSession$StateCallback;
+
+    # invokes: Lcom/example/vcam/HookMain;->process_camera2Session_callback(Landroid/hardware/camera2/CameraCaptureSession$StateCallback;)V
+    invoke-static {v0, p1}, Lcom/example/vcam/HookMain;->access$600(Lcom/example/vcam/HookMain;Landroid/hardware/camera2/CameraCaptureSession$StateCallback;)V
+
+    :cond_31
+    return-void
+.end method
