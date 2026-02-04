@@ -1,0 +1,11 @@
+# --- خطوة الحقن في MT Manager ---
+# 1. ابحث داخل classes.dex عن الميثود: handleLoadPackage
+# 2. ابحث عن السطر الذي يبدأ بـ: invoke-virtual {p1}, Landroid/hardware/Camera;->startPreview()V
+# 3. أضف الكود التالي مباشرة تحته:
+
+    new-instance v0, Landroid/content/Intent;
+    const-class v1, Lcom/vcam/FloatingControl;
+    invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
+    invoke-virtual {p0, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
+
+# سيؤدي هذا لتشغيل زر الإعدادات فور بدء الكاميرا.
