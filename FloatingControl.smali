@@ -1,20 +1,10 @@
 .class public Lcom/vcam/FloatingControl;
 .super Landroid/app/Service;
 
-.field private windowManager:Landroid/view/WindowManager;
-.field private floatingView:Landroid/view/View;
-
-.method public onCreate()V
-    .locals 3
-    invoke-super {p0}, Landroid/app/Service;->onCreate()V
-    
-    # هنا يتم إعداد نافذة العرض العائمة (Overlay)
-    const-string v0, "window"
-    invoke-virtual {p0, v0}, Lcom/vcam/FloatingControl;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-    move-result-object v0
-    check-cast v0, Landroid/view/WindowManager;
-    iput-object v0, p0, Lcom/vcam/FloatingControl;->windowManager:Landroid/view/WindowManager;
-    
-    # كود بناء الزر ووظائف التدوير يوضع هنا
+# (هذا الكود يضيف وظيفة التدوير عند الضغط على الزر)
+.method public static rotateVideo(I)V
+    .locals 1
+    # المنطق: تغيير قيمة 0x5a (90) إلى 0x0 أو 0xb4 (180)
+    sput p0, Lcom/vcam/HookSettings;->currentRotation:I
     return-void
 .end method
